@@ -1,0 +1,22 @@
+[Unit]
+Description=Quantum's distributed currency daemon
+After=network.target
+
+[Service]
+User=quantum
+Group=quantum
+
+Type=forking
+PIDFile=/var/lib/quantumd/quantumd.pid
+ExecStart=/usr/bin/quantumd -daemon -pid=/var/lib/quantumd/quantumd.pid \
+-conf=/etc/quantum/quantum.conf -datadir=/var/lib/quantumd -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

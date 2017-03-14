@@ -1,0 +1,33 @@
+# /etc/conf.d/quantumd: config file for /etc/init.d/quantumd
+
+# Config file location
+#QUANTUMD_CONFIGFILE="/etc/quantum/quantum.conf"
+
+# What directory to write pidfile to?  (created and owned by $QUANTUMD_USER)
+#QUANTUMD_PIDDIR="/var/run/quantumd"
+
+# What filename to give the pidfile
+#QUANTUMD_PIDFILE="${QUANTUMD_PIDDIR}/quantumd.pid"
+
+# Where to write quantumd data (be mindful that the blockchain is large)
+#QUANTUMD_DATADIR="/var/lib/quantumd"
+
+# User and group to own quantumd process
+#QUANTUMD_USER="quantum"
+#QUANTUMD_GROUP="quantum"
+
+# Path to quantumd executable
+#QUANTUMD_BIN="/usr/bin/quantumd"
+
+# Nice value to run quantumd under
+#QUANTUMD_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+QUANTUMD_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for quantumd to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+QUANTUMD_SIGTERM_TIMEOUT=60

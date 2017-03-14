@@ -1,0 +1,5 @@
+Building Quantum
+
+See doc/build-*.md for instructions on building quantumd,
+the intended-for-services, no-graphical-interface, reference
+implementation of Quantum.

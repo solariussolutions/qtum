@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[quantum.qt-translation-013x]
+file_filter = src/qt/locale/quantum_<lang>.ts
+source_file = src/qt/locale/quantum_en.ts
+source_lang = en

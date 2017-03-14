@@ -1,0 +1,6 @@
+usr/local/bin/quantum-qt usr/bin
+share/pixmaps/quantum32.xpm usr/share/pixmaps
+share/pixmaps/quantum16.xpm usr/share/pixmaps
+share/pixmaps/quantum128.png usr/share/pixmaps
+debian/quantum-qt.desktop usr/share/applications
+debian/quantum-qt.protocol usr/share/kde4/services/

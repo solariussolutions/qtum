@@ -1,0 +1,219 @@
+TESTS += test/test_quantum
+bin_PROGRAMS += test/test_quantum
+TEST_SRCDIR = test
+TEST_BINARY=test/test_quantum$(EXEEXT)
+
+
+EXTRA_DIST += \
+	test/bctest.py \
+	test/quantum-util-test.py \
+	test/data/quantum-util-test.json \
+	test/data/blanktx.hex \
+	test/data/tt-delin1-out.hex \
+	test/data/tt-delout1-out.hex \
+	test/data/tt-locktime317000-out.hex \
+	test/data/tx394b54bb.hex \
+	test/data/txcreate1.hex \
+	test/data/txcreate2.hex \
+	test/data/txcreatedata1.hex \
+	test/data/txcreatedata2.hex \
+	test/data/txcreatesign.hex \
+	test/data/txcreatedata_seq0.hex \
+	test/data/txcreatedata_seq1.hex
+
+JSON_TEST_FILES = \
+  test/data/script_tests.json \
+  test/data/base58_keys_valid.json \
+  test/data/base58_encode_decode.json \
+  test/data/base58_keys_invalid.json \
+  test/data/tx_invalid.json \
+  test/data/tx_valid.json \
+  test/data/sighash.json \
+  test/libevm/VMTestsFiller/vmArithmeticTestFiller.json \
+  test/libevm/VMTestsFiller/vmBitwiseLogicOperationTestFiller.json \
+  test/libevm/VMTestsFiller/vmBlockInfoTestFiller.json \
+  test/libevm/VMTestsFiller/vmEnvironmentalInfoTestFiller.json \
+  test/libevm/VMTestsFiller/vmIOandFlowOperationsTestFiller.json \
+  test/libevm/VMTestsFiller/vmLogTestFiller.json \
+  test/libevm/VMTestsFiller/vmPerformanceTestFiller.json \
+  test/libevm/VMTestsFiller/vmPushDupSwapTestFiller.json \
+  test/libevm/VMTestsFiller/vmSha3TestFiller.json \
+  test/libevm/VMTestsFiller/vmSystemOperationsTestFiller.json \
+  test/libevm/VMTestsFiller/vmtestsFiller.json \
+  test/libethereum/StateTestsFiller/stBlockHashTestFiller.json \
+  test/libethereum/StateTestsFiller/stCallCodesFiller.json \
+  test/libethereum/StateTestsFiller/stCallCreateCallCodeTestFiller.json \
+  test/libethereum/StateTestsFiller/stExampleFiller.json \
+  test/libethereum/StateTestsFiller/stInitCodeTestFiller.json \
+  test/libethereum/StateTestsFiller/stLogTestsFiller.json \
+  test/libethereum/StateTestsFiller/stMemoryStressTestFiller.json \
+  test/libethereum/StateTestsFiller/stMemoryTestFiller.json \
+  test/libethereum/StateTestsFiller/stPreCompiledContractsFiller.json \
+  test/libethereum/StateTestsFiller/stQuadraticComplexityTestFiller.json \
+  test/libethereum/StateTestsFiller/stRecursiveCreateFiller.json \
+  test/libethereum/StateTestsFiller/stRefundTestFiller.json \
+  test/libethereum/StateTestsFiller/stSolidityTestFiller.json \
+  test/libethereum/StateTestsFiller/stSpecialTestFiller.json \
+  test/libethereum/StateTestsFiller/stSystemOperationsTestFiller.json \
+  test/libethereum/StateTestsFiller/stTransactionTestFiller.json \
+  test/libethereum/StateTestsFiller/stTransitionTestFiller.json \
+  test/libethereum/StateTestsFiller/stWalletTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stBoundsTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stCallCodesFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stCallCreateCallCodeTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stCallDelegateCodesCallCodeFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stCallDelegateCodesFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stDelegatecallTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stHomeSteadSpecificFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stInitCodeTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stLogTestsFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stMemoryStressTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stMemoryTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stPreCompiledContractsFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stQuadraticComplexityTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stRecursiveCreateFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stRefundTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stSpecialTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stSystemOperationsTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stTransactionTestFiller.json \
+  test/libethereum/StateTestsFiller/Homestead/stWalletTestFiller.json 
+
+RAW_TEST_FILES =
+
+GENERATED_TEST_FILES = $(JSON_TEST_FILES:.json=.json.h) $(RAW_TEST_FILES:.raw=.raw.h)
+
+QUANTUM_TESTS =\
+  test/arith_uint256_tests.cpp \
+  test/scriptnum10.h \
+  test/addrman_tests.cpp \
+  test/amount_tests.cpp \
+  test/allocator_tests.cpp \
+  test/base32_tests.cpp \
+  test/base58_tests.cpp \
+  test/base64_tests.cpp \
+  test/bip32_tests.cpp \
+  test/blockencodings_tests.cpp \
+  test/bloom_tests.cpp \
+  test/Checkpoints_tests.cpp \
+  test/coins_tests.cpp \
+  test/compress_tests.cpp \
+  test/crypto_tests.cpp \
+  test/DoS_tests.cpp \
+  test/getarg_tests.cpp \
+  test/hash_tests.cpp \
+  test/key_tests.cpp \
+  test/limitedmap_tests.cpp \
+  test/dbwrapper_tests.cpp \
+  test/main_tests.cpp \
+  test/mempool_tests.cpp \
+  test/merkle_tests.cpp \
+  test/miner_tests.cpp \
+  test/multisig_tests.cpp \
+  test/net_tests.cpp \
+  test/netbase_tests.cpp \
+  test/pmt_tests.cpp \
+  test/policyestimator_tests.cpp \
+  test/pow_tests.cpp \
+  test/prevector_tests.cpp \
+  test/reverselock_tests.cpp \
+  test/rpc_tests.cpp \
+  test/sanity_tests.cpp \
+  test/scheduler_tests.cpp \
+  test/script_P2SH_tests.cpp \
+  test/script_tests.cpp \
+  test/scriptnum_tests.cpp \
+  test/serialize_tests.cpp \
+  test/sighash_tests.cpp \
+  test/sigopcount_tests.cpp \
+  test/skiplist_tests.cpp \
+  test/streams_tests.cpp \
+  test/test_quantum.cpp \
+  test/test_quantum.h \
+  test/testutil.cpp \
+  test/testutil.h \
+  test/timedata_tests.cpp \
+  test/transaction_tests.cpp \
+  test/txvalidationcache_tests.cpp \
+  test/versionbits_tests.cpp \
+  test/uint256_tests.cpp \
+  test/univalue_tests.cpp \
+  test/util_tests.cpp \
+  test/libevm/vm.cpp \
+  test/libevm/vm.h \
+  test/TestHelper.cpp \
+  test/TestHelper.h \
+  test/libtestutils/Common.cpp \
+  test/libtestutils/Common.h \
+  test/Stats.cpp \
+  test/Stats.h \
+  test/libethereum/State.cpp \
+  test/qtumStateTests/qtumStateTests.cpp
+
+if ENABLE_WALLET
+QUANTUM_TESTS += \
+  wallet/test/wallet_test_fixture.cpp \
+  wallet/test/wallet_test_fixture.h \
+  wallet/test/accounting_tests.cpp \
+  wallet/test/wallet_tests.cpp \
+  wallet/test/crypto_tests.cpp \
+  wallet/test/rpc_wallet_tests.cpp
+endif
+
+test_test_quantum_SOURCES = $(QUANTUM_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
+test_test_quantum_CPPFLAGS = $(AM_CPPFLAGS) $(QUANTUM_INCLUDES) -I$(builddir)/test/ $(TESTDEFS)
+test_test_quantum_LDADD = $(LIBQUANTUM_SERVER) $(LIBQUANTUM_CLI) $(LIBQUANTUM_COMMON) $(LIBQUANTUM_UTIL) $(LIBQUANTUM_CONSENSUS) $(LIBQUANTUM_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(BOOST_UNIT_TEST_FRAMEWORK_LIB) $(LIBSECP256K1) $(CRYPTOPP_LIBS)
+test_test_quantum_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+if ENABLE_WALLET
+test_test_quantum_LDADD += $(LIBQUANTUM_WALLET)
+endif
+
+test_test_quantum_LDADD += $(LIBQUANTUM_CONSENSUS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(CRYPTOPP_LIBS)
+test_test_quantum_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
+
+if ENABLE_ZMQ
+test_test_quantum_LDADD += $(ZMQ_LIBS)
+endif
+
+nodist_test_test_quantum_SOURCES = $(GENERATED_TEST_FILES)
+
+$(QUANTUM_TESTS): $(GENERATED_TEST_FILES)
+
+CLEAN_QUANTUM_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
+
+CLEANFILES += $(CLEAN_QUANTUM_TEST)
+
+# This file is problematic for out-of-tree builds if it exists.
+DISTCLEANFILES += test/buildenv.pyc
+
+quantum_test: $(TEST_BINARY)
+
+quantum_test_check: $(TEST_BINARY) FORCE
+	$(MAKE) check-TESTS TESTS=$^
+
+quantum_test_clean : FORCE
+	rm -f $(CLEAN_QUANTUM_TEST) $(test_test_quantum_OBJECTS) $(TEST_BINARY)
+
+check-local:
+	@echo "Running test/quantum-util-test.py..."
+	$(AM_V_at)srcdir=$(srcdir) PYTHONPATH=$(builddir)/test $(PYTHON) $(srcdir)/test/quantum-util-test.py
+	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C secp256k1 check
+if EMBEDDED_UNIVALUE
+	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C univalue check
+endif
+
+%.json.h: %.json
+	@$(MKDIR_P) $(@D)
+	@echo "namespace json_tests{" > $@
+	@echo "static unsigned const char $(*F)[] = {" >> $@
+	@$(HEXDUMP) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(SED) -e 's/0x  ,//g' >> $@
+	@echo "};};" >> $@
+	@echo "Generated $@"
+
+%.raw.h: %.raw
+	@$(MKDIR_P) $(@D)
+	@echo "namespace alert_tests{" > $@
+	@echo "static unsigned const char $(*F)[] = {" >> $@
+	@$(HEXDUMP) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(SED) -e 's/0x  ,//g' >> $@
+	@echo "};};" >> $@
+	@echo "Generated $@"

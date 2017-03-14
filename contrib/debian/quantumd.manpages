@@ -1,0 +1,3 @@
+debian/manpages/quantumd.1
+debian/manpages/quantum.conf.5
+debian/manpages/quantum-cli.1

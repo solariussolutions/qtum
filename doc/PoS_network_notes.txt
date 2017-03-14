@@ -1,0 +1,132 @@
+------------------------------------------------------
+PART 1 EXISTING NETWORK
+------------------------------------------------------
+
+How to use the PoS network?
+
+5 servers run PoS nodes (at the momentof writing).
+Build the application and start the daemon or wallet, no special configurations are needed in order to use it.
+
+
+How to do staking?
+
+Start the wallet or daemon for staking. You can do staking with coins that are older then the minimum stake confirmations needed. When using nStakeMinConfirmations = 500, the coins for staking need to be older then 9 hours (500*64/3600), the implication is that if you get the coins now you need to wait 9 hours before being able to use it for staking.
+When do staking the wallet show the number of coins involved into the staking process.
+For example:
+Let the unspent transaction be 10000, the reward is 5 coins, the stake is 10000 + 5 = 10005 coins.
+After the required confirmations the reward can be spent, if the block is rejected the unspent transaction is returned to the block creator.
+In case the stake is big (more then 200 coins) then the stake is split into 2 outputs, in this case the output transactions will be 5002.5 coins and 5002.5 coins.
+
+
+------------------------------------------------------
+PART 2 CUSTOM NETWORK
+------------------------------------------------------
+
+How to create a custom network?
+
+Quantum support currently creation of three networks. The networks are Mainnet, Testnet and Regtest network.
+The Mainnet and Testnet are used for mining with nodes, Regtest is intended for solo mining.
+
+The configuration file is chainparams.cpp for parameters. The classes are CMainParams, CTestNetParams and CRegTestParams.
+Most important parameters are the following:
+//Port for the network, the port should be unique for the application
+nDefaultPort
+//The last PoW blocks, after that block will be created PoS blocks
+nLastPOWBlock
+//Difficulty for PoW
+consensus.powLimit
+//Difficulty for PoS
+consensus.posLimit
+//Time span for the computation of the difficulty, for example if the TimeSpan is 16 minutes and a lot of blocks are created in that 16 minutes then the difficulty will be increased
+consensus.nTargetTimespan
+//The average time spacing that we target to be when creating blocks
+consensus.nTargetSpacing
+//The genesis block for the network, the method MakeItGenesis help finding the right values for creating the genesis block
+genesis
+
+When creating network with less then PoW 501 blocks (nLastPOWBlock < 501) additional parameters need to be changed:
+main.cpp:
+//The value need to be less then 500
+nStakeMinConfirmations
+consensus.h:
+//The value need to be less then 500
+COINBASE_MATURITY
+
+The configuration file for static nodes can be done in chainparams.cpp, but also in the file chainparamsseeds.h.
+chainparamsseeds.h can be generated using the script contrib/seeds/generate-seeds.py with appropriate values.
+Also, the application ping automatically nodes, so if found some node using the nDefaultPort then automatically add it. The only difference is that the automatic ping take more time to find nodes, static or manual nodes are added immediately.
+
+The file $HOME/.quantum/quantum.conf contain the configuration. The wallet will work also without the configuration file.
+# Example configuration for testing
+# 1 Start the mining, 0 stop the mining (Block number < nLastPOWBlock), the default value is to be started
+gen=1
+# 1 Start the staking, 0 stop the staking (Block number >= nLastPOWBlock), the default value is to be started
+staking=1
+# 1 display additional debug informations in the Wallet, 0 don't display additional informations
+debug=0
+# User name and password for the RPC user, this is needed in order to be able to use quantum-cli command to communicate with the daemon
+rpcuser=devquantum
+rpcpassword=devquantum
+# Add node manually (useful for local network, add several machines using the add node command)
+addnode=69.164.218.197
+
+The network will be operational if there are at least two nodes started and find each other.
+The nodes will wait for creation of the first block, this can be done manually on one of the nodes using the following command:
+quantum-cli generate 1
+Once the first block is created then the mining will start and blocks will be added to the chain.
+
+The Mainnet can be access using the command:
+quantumd
+OR
+quantum-qt
+The Testnet can be access using the command:
+quantumd -testnet
+OR
+quantum-qt -testnet
+
+
+What is maturity?
+
+The number of blocks that need to be mined from the new generated block before being able to use the reward from the block generation.
+It is controlled with 2 parameters:
+main.cpp:
+//Number of confirmations before being able to take the unspent transaction output into the staking process (minimum age of the coins).
+nStakeMinConfirmations
+consensus.h:
+//Number of confirmations before being able to spend the reward from the generated block (PoW or PoS block).
+COINBASE_MATURITY
+The rule is that nStakeMinConfirmations >= COINBASE_MATURITY.
+
+
+------------------------------------------------------
+PART 3 CUSTOM NETWORK
+------------------------------------------------------
+
+What is recommended?
+
+For production testing it is recommended the following settings.
+10000 PoW * 10000 COIN = 100000000 COIN
+5 COIN PoS reward, that is 2465437.5 yearly (365.25 * 24 * 3600 / 64).
+Projected increase according to the settings:
+Year 1: 2.45%
+Year 2: 2.40%
+Year 3: 2.35%
+Year 4: 2.29%
+Year 5: 2.24%
+...
+Year 50: 1.10%
+...
+
+For developer testing it is enough to create network with small amount of PoW blocks.
+500 PoW * 10000 COIN = 5000000 COIN
+5 COIN PoS reward, that is 2465437.5 yearly (365.25 * 24 * 3600 / 64).
+Projected increase according to the settings:
+Year 1: 49.30%
+Year 2: 33.02%
+Year 3: 24.82%
+Year 4: 19.88%
+Year 5: 16.58%
+...
+Year 50: 1.95%
+...
+

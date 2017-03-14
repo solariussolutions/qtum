@@ -1,0 +1,43 @@
+{
+    "accounts" : [
+        {
+            "accountAddress" : "3650445d55c66eb309e9f2288583993d51f6a623",
+            "balance" : "0000000000000000000000000000000000000000000000000000000000000000",
+            "vins" : [
+                {
+                    "hash" : "5e20a0453cecd065ea59c37ac63e079ee08998b6045136a8ce6635c7912ec0bb",
+                    "nVout" : 0,
+                    "amount" : 0
+                }
+            ]
+        },
+        {
+            "accountAddress" : "f3d17fb78df83d20ffba982740e0a7a2e776faaf",
+            "balance" : "0000000000000000000000000000000000000000000000000000000000000000",
+            "vins" : [
+                {
+                    "hash" : "5e20a0453cecd065ea59c37ac63e079ee08998b6045136a8ce6635c7912ec0b6",
+                    "nVout" : 0,
+                    "amount" : 0
+                }
+            ]
+        },
+        {
+            "accountAddress" : "867e1110227133f493dd4e05a32eeddb3eadc75e",
+            "balance" : "0000000000000000000000000000000000000000000000000000000000124f80",
+            "vins" : [
+                {
+                    "hash" : "5e20a0453cecd065ea59c37ac63e079ee08998b6045136a8ce6635c7912ec0ba",
+                    "nVout" : 0,
+                    "amount" : 0
+                },
+                {
+                    "hash" : "ae20a0453cecd065ea59c37ac63e079ee08998b6045136a8ce6635c7912ec0b6",
+                    "nVout" : 0,
+                    "amount" : 1200000
+                }
+            ]
+        }
+    ],
+    "txHashes" : []
+}

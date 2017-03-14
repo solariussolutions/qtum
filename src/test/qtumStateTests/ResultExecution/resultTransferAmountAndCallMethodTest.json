@@ -1,0 +1,21 @@
+{
+    "accounts" : [
+        {
+            "accountAddress" : "16a0b2044177dde7211417082635af0847fe7c69",
+            "balance" : "0000000000000000000000000000000000000000000000000000000000055730",
+            "vins" : [
+                {
+                    "hash" : "5e20a0453cecd065ea59c37ac63e079ee08998b6045136a8ce6635c7912ec0ff",
+                    "nVout" : 0,
+                    "amount" : 0
+                },
+                {
+                    "hash" : "afffa0453cecd065ea59c37ac63e079ee08998b6045136a8ce6635c7912ec0b6",
+                    "nVout" : 0,
+                    "amount" : 350000
+                }
+            ]
+        }
+    ],
+    "txHashes" : []
+}

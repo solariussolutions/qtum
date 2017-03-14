@@ -1,0 +1,2 @@
+contrib/quantum-tx.bash-completion	quantumd
+contrib/quantum-cli.bash-completion	quantum-cli
