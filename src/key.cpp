@@ -140,6 +140,7 @@ const unsigned char vchHalfOrder[32] = {
 };
 
 bool EnsureLowS(std::vector<unsigned char>& vchSig) {
+/*
     unsigned char *pos;
 
     if (vchSig.empty())
@@ -166,6 +167,8 @@ bool EnsureLowS(std::vector<unsigned char>& vchSig) {
     ECDSA_SIG_free(sig);
     vchSig.resize(nSize); // Shrink to fit actual size
     return true;
+*/
+    return false;
 }
 //end modif qtum
 
